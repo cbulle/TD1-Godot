@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Effects/Scripts/one_shot_fx.gd" id="1"]
+[ext_resource type="Texture2D" path="res://KennyAssets/SpaceShooterRedux/Meteors/meteorGrey_tiny1.png" id="2"]
+
+[sub_resource type="Gradient" id="fade"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(0.8, 0.75, 0.8, 1, 0.6, 0.55, 0.65, 0.8, 0.5, 0.5, 0.6, 0)
+
+[sub_resource type="Curve" id="shrink"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Debris" type="Node2D"]
+script = ExtResource("1")
+duration = 3.0
+
+[node name="Chunks" type="CPUParticles2D" parent="."]
+emitting = true
+amount = 6
+lifetime = 2.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+texture = ExtResource("2")
+spread = 180.0
+gravity = Vector2(0, 120)
+initial_velocity_min = 80.0
+initial_velocity_max = 180.0
+damping_min = 60.0
+damping_max = 90.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_max = 1.0
+scale_amount_curve = SubResource("shrink")
+color_ramp = SubResource("fade")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Effects/Scripts/one_shot_fx.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Effects/Textures/soft_circle.png" id="2"]
+
+[sub_resource type="CanvasItemMaterial" id="additive"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="flash_colors"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.4, 0.8, 1, 0)
+
+[sub_resource type="Curve" id="shrink"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="MuzzleFlash" type="Node2D"]
+script = ExtResource("1")
+duration = 0.2
+
+[node name="Flash" type="CPUParticles2D" parent="."]
+material = SubResource("additive")
+emitting = true
+amount = 1
+lifetime = 0.08
+one_shot = true
+texture = ExtResource("2")
+gravity = Vector2(0, 0)
+scale_amount_min = 0.9
+scale_amount_max = 0.9
+scale_amount_curve = SubResource("shrink")
+color_ramp = SubResource("flash_colors")

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://Effects/Scripts/one_shot_fx.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Effects/Textures/soft_circle.png" id="2"]
+[ext_resource type="Texture2D" path="res://Effects/Textures/spark.png" id="3"]
+[ext_resource type="AudioStream" path="res://Effects/Sounds/sfx_explosion.tres" id="4"]
+
+[sub_resource type="CanvasItemMaterial" id="additive"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="flash_colors"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.9, 0.6, 0)
+
+[sub_resource type="Gradient" id="fire_colors"]
+offsets = PackedFloat32Array(0, 0.15, 0.5, 1)
+colors = PackedColorArray(1, 1, 0.9, 1, 1, 0.8, 0.3, 1, 0.95, 0.3, 0.1, 0.7, 0.3, 0.1, 0.1, 0)
+
+[sub_resource type="Gradient" id="spark_colors"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 0.95, 0.6, 1, 1, 0.5, 0.1, 0)
+
+[sub_resource type="Curve" id="shrink"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="thin_out"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="pop"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1")
+duration = 1.0
+
+[node name="Flash" type="CPUParticles2D" parent="."]
+material = SubResource("additive")
+emitting = true
+amount = 1
+lifetime = 0.12
+one_shot = true
+texture = ExtResource("2")
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("pop")
+color_ramp = SubResource("flash_colors")
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+material = SubResource("additive")
+emitting = true
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+texture = ExtResource("2")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 220.0
+damping_min = 250.0
+damping_max = 350.0
+scale_amount_min = 0.8
+scale_amount_max = 1.6
+scale_amount_curve = SubResource("shrink")
+color_ramp = SubResource("fire_colors")
+
+[node name="Sparks" type="CPUParticles2D" parent="."]
+material = SubResource("additive")
+emitting = true
+amount = 20
+lifetime = 0.45
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+texture = ExtResource("3")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 550.0
+damping_min = 500.0
+damping_max = 700.0
+particle_flag_align_y = true
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("thin_out")
+color_ramp = SubResource("spark_colors")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4")
+autoplay = true
