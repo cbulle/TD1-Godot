@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b2g8qumxcrai4"]
+
+[ext_resource type="Script" uid="uid://cw1ual4ox2qbe" path="res://Scripts/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://ca513f5s5u4ji" path="res://KennyAssets/SpaceShooterRedux/Enemies/enemyRed1.png" id="1_7k104"]
+[ext_resource type="PackedScene" path="res://Effects/explosion.tscn" id="2_qi2p4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(92.375, 83.75)
+
+[node name="Enemy" type="Area2D" unique_id=516288857]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_4gyqm")
+explosion_scene = ExtResource("2_qi2p4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=282438886]
+texture = ExtResource("1_7k104")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645470774]
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="flash" type="Timer" parent="." unique_id=1379931047]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="flash" to="." method="_on_flash_timeout"]

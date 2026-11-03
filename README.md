@@ -507,9 +507,9 @@ Piochez librement. Plus vous montez, plus ça rapporte. Remplissez la colonne **
 
 | | Effet | Vu en | Fait |
 |---|---|---|:---:|
-| 🥉 | Flash blanc à l'impact | 1.4 |  |
-| 🥉 | Son de tir avec pitch aléatoire | 1.3 |  |
-| 🥉 | Explosion et étincelles d'impact | 1.4 |  |
+| 🥉 | Flash blanc à l'impact | 1.4 | done |
+| 🥉 | Son de tir avec pitch aléatoire | 1.3 | done |
+| 🥉 | Explosion et étincelles d'impact | 1.4 | done |
 | 🥉 | Score qui punch, flash rouge au dégât | 1.5 |  |
 | 🥈 | Screen shake par trauma | 2.1 |  |
 | 🥈 | Hitstop | 2.1 |  |
@@ -523,6 +523,8 @@ Piochez librement. Plus vous montez, plus ça rapporte. Remplissez la colonne **
 | 🥇 | Shake plus doux avec `FastNoiseLite` au lieu de `randf_range` | Libre |  |
 | 🥇 | Le fond défile plus vite quand la difficulté monte | Libre |  |
 | 🥇 | Vibration dosée selon l'événement (tir, coup, mort) | Libre |  |
+|  | Déplacement vertical  | | done |
+
 
 </div>
 

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cskahkn4kgkso"]
+
+[ext_resource type="Script" uid="uid://di7c15d4ojrox" path="res://Scripts/weapon.gd" id="1_txbui"]
+[ext_resource type="PackedScene" uid="uid://dj4onxjx55pfm" path="res://bullet.tscn" id="2_yftpa"]
+[ext_resource type="AudioStream" path="res://Effects/Sounds/sfx_laser.tres" id="3_grvgi"]
+[ext_resource type="PackedScene" path="res://muzzle_flash.tscn" id="3_yftpa"]
+
+[node name="Weapon" type="Node2D" unique_id=817713089]
+script = ExtResource("1_txbui")
+bullet_scene = ExtResource("2_yftpa")
+muzzle_flash_scene = ExtResource("3_yftpa")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=2052380547]
+stream = ExtResource("3_grvgi")

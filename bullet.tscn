@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dj4onxjx55pfm"]
+
+[ext_resource type="Script" uid="uid://fx0af5irpkhr" path="res://Scripts/bullet.gd" id="1_v8qja"]
+[ext_resource type="PackedScene" path="res://Effects/hit_spark.tscn" id="2_2b2rl"]
+[ext_resource type="Texture2D" uid="uid://bpi7xwbogvkid" path="res://KennyAssets/SpaceShooterRedux/Lasers/laserBlue02.png" id="2_t4vbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(9, 33)
+
+[node name="Bullet" type="Area2D" unique_id=1812450145]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_v8qja")
+hit_effect_scene = ExtResource("2_2b2rl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471786202]
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="LaserBlue" type="Sprite2D" parent="." unique_id=112405613]
+texture = ExtResource("2_t4vbm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
