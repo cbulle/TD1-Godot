@@ -24,3 +24,6 @@ shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=360104076]
 stream = ExtResource("4_vgqql")
+
+[node name="InvincibleTimer" type="Timer" parent="." unique_id=1584741494]
+ignore_time_scale = true
