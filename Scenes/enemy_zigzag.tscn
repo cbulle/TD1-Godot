@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://byi8lqvbq1bub"]
+
+[ext_resource type="Script" uid="uid://cjue7ykmcjsif" path="res://Scripts/enemy_zigzag.gd" id="1_nx5d0"]
+[ext_resource type="Texture2D" uid="uid://c5gnudwsl7cwp" path="res://KennyAssets/SpaceShooterRedux/ufoBlue.png" id="2_1u38b"]
+[ext_resource type="PackedScene" path="res://Effects/explosion.tscn" id="2_ob88o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wyvl"]
+size = Vector2(92, 90)
+
+[node name="enemy_zigzag" type="Area2D" unique_id=1435809557]
+collision_layer = 2
+script = ExtResource("1_nx5d0")
+explosion_scene = ExtResource("2_ob88o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1101971823]
+texture = ExtResource("2_1u38b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399764711]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_3wyvl")
+
+[node name="flash" type="Timer" parent="." unique_id=1786703987]

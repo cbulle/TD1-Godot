@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dxiduvvvcf4m5"]
+
+[ext_resource type="PackedScene" uid="uid://buml642e7ndda" path="res://Scenes/enemy_spawner.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b2g8qumxcrai4" path="res://Scenes/enemy.tscn" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dtnl7mrf7dbqe" path="res://KennyAssets/SpaceShooterRedux/Backgrounds/purple.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ctvxkerqdxsg0" path="res://Scenes/player.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://b3dxkfhxs8yeb" path="res://Scripts/camera_shake.gd" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://bb830e54nxi8f" path="res://Scenes/hud.tscn" id="5_kry3j"]
+
+[node name="Main" type="Node2D" unique_id=727582738]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1407352489]
+repeat_size = Vector2(256, 256)
+autoscroll = Vector2(0, 100)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=537607668]
+texture_repeat = 2
+position = Vector2(-135.00002, 494)
+scale = Vector2(1.0390626, 1.2070315)
+texture = ExtResource("1_ig7tw")
+centered = false
+region_rect = Rect2(0, 0, 320, 1280)
+
+[node name="Enemy_spawner" parent="." unique_id=1490907345 instance=ExtResource("1_1bvp3")]
+position = Vector2(0, -844)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1228620746]
+limit_left = -360
+limit_top = -640
+limit_right = 360
+limit_bottom = 640
+script = ExtResource("2_21xkr")
+
+[node name="Player" parent="." unique_id=297730624 instance=ExtResource("2_0xm2m")]
+position = Vector2(0, 480)
+
+[node name="Enemy" parent="." unique_id=516288857 instance=ExtResource("1_h2yge")]
+
+[node name="HUD" parent="." unique_id=388750205 instance=ExtResource("5_kry3j")]

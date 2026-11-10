@@ -11,7 +11,6 @@ extends Area2D
 var velocity: Vector2 = Vector2.ZERO
 var current_pv : int = pv 
 	
- 
 	
 func _physics_process(delta: float) -> void:
 	var target_velocity: Vector2 = read_direction() * speed
@@ -33,7 +32,15 @@ func read_direction() -> Vector2:
 	
 func take_damage(damage: int) -> void:
 	current_pv -= damage
-	if current_pv <= 0:
-		get_tree().reload_current_scene.call_deferred()
-
+	GameManager.player_life_changed.emit(current_pv) 
 	
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	
+	if current_pv <= 0:
+		if camera:
+			camera.add_trauma(1.0) 
+		GameManager.trigger_game_over()
+	else:
+		if camera:
+			camera.add_trauma(0.6) 
+		GameManager.hitstop(0.1)   
