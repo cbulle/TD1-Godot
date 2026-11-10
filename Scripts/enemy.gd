@@ -8,7 +8,7 @@ extends Area2D
 @export var explosion_scene: PackedScene
 @export var debris_scene: PackedScene
 @export var score: int = 10
-
+var scale_tween: Tween 
 var current_pv: int = max_pv
 var velocity: Vector2
 
@@ -17,6 +17,9 @@ var velocity: Vector2
 
 func _ready() -> void:
 	velocity = Vector2.DOWN * speed
+	scale = Vector2.ZERO
+	var pop_tween: Tween = create_tween()
+	pop_tween.tween_property(self, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(velocity, knockback_recovery * delta)
@@ -29,6 +32,14 @@ func take_damage(damage: int) -> void:
 	sprite.modulate = Color(10, 10, 10)
 	flash_timer.start()
 	velocity.y = -knockback * 0.3
+
+	if scale_tween and scale_tween.is_running():
+		scale_tween.kill()
+		
+	scale_tween = create_tween()
+	scale_tween.tween_property(sprite, "scale", Vector2(1.3, 0.7), 0.1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	scale_tween.tween_property(sprite, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	
 	if current_pv <= 0:
 		die(true)
 		return

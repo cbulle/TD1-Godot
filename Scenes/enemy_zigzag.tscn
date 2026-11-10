@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://byi8lqvbq1bub"]
 
 [ext_resource type="Script" uid="uid://cjue7ykmcjsif" path="res://Scripts/enemy_zigzag.gd" id="1_nx5d0"]
-[ext_resource type="Texture2D" uid="uid://c5gnudwsl7cwp" path="res://KennyAssets/SpaceShooterRedux/ufoBlue.png" id="2_1u38b"]
 [ext_resource type="PackedScene" path="res://Effects/explosion.tscn" id="2_ob88o"]
+[ext_resource type="PackedScene" path="res://Effects/debris.tscn" id="3_1etif"]
+[ext_resource type="Texture2D" uid="uid://bqm10hvokwygb" path="res://KennyAssets/SpaceShooterRedux/ufoGreen.png" id="4_1etif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3wyvl"]
 size = Vector2(92, 90)
@@ -11,9 +12,10 @@ size = Vector2(92, 90)
 collision_layer = 2
 script = ExtResource("1_nx5d0")
 explosion_scene = ExtResource("2_ob88o")
+debris_scene = ExtResource("3_1etif")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1101971823]
-texture = ExtResource("2_1u38b")
+texture = ExtResource("4_1etif")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399764711]
 position = Vector2(1, 0)

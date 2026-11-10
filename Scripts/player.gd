@@ -17,6 +17,10 @@ var velocity: Vector2 = Vector2.ZERO
 var current_pv: int = pv 
 var is_invincible: bool = false
 
+func _ready() -> void:
+	if invincible_timer:
+		invincible_timer.timeout.connect(_on_invincible_timer_timeout)
+
 func _physics_process(delta: float) -> void:
 	var target_velocity: Vector2 = read_direction() * speed
 	velocity = velocity.move_toward(target_velocity, acceleration * delta)

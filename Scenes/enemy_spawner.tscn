@@ -7,7 +7,6 @@
 [node name="Spawnner" type="Node2D" unique_id=1585660969]
 script = ExtResource("1_ewhtn")
 enemy_scenes = Array[PackedScene]([ExtResource("2_00s5r"), ExtResource("3_cdqhx")])
-enemy_scene = ExtResource("2_00s5r")
 
 [node name="Timer" type="Timer" parent="." unique_id=856927426]
 autostart = true

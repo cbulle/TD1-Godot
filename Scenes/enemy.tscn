@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cw1ual4ox2qbe" path="res://Scripts/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://ca513f5s5u4ji" path="res://KennyAssets/SpaceShooterRedux/Enemies/enemyRed1.png" id="1_7k104"]
-[ext_resource type="PackedScene" path="res://Effects/debris.tscn" id="2_287tu"]
 [ext_resource type="PackedScene" path="res://Effects/explosion.tscn" id="2_qi2p4"]
 [ext_resource type="PackedScene" uid="uid://byi8lqvbq1bub" path="res://Scenes/enemy_zigzag.tscn" id="4_287tu"]
 
@@ -14,7 +13,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_4gyqm")
 explosion_scene = ExtResource("2_qi2p4")
-debris_scene = ExtResource("2_287tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=282438886]
 texture = ExtResource("1_7k104")

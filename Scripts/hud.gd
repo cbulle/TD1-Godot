@@ -8,7 +8,18 @@ extends CanvasLayer
 func _ready() -> void:
 	GameManager.score_changed.connect(_on_score_changed)
 	GameManager.player_life_changed.connect(_on_player_life_changed)
+	GameManager.game_over.connect(_on_game_over) 
 	score_label.text = "%06d" % GameManager.score
+	game_over.visible = false
+
+func _on_game_over() -> void:
+	game_over.visible = true
+	game_over.modulate.a = 0.0
+	game_over.scale = Vector2.ZERO
+	
+	var panel_tween: Tween = create_tween().set_parallel(true).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	panel_tween.tween_property(game_over, "scale", Vector2.ONE, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	panel_tween.tween_property(game_over, "modulate:a", 1.0, 1)
 
 func _on_score_changed(score: int) -> void:
 	score_label.text = "%06d" % score
